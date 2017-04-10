@@ -1,7 +1,7 @@
 // @flow
 
-import half from '../src/index.js';
+import checkHexColor from '../src/index';
 
-test('halt', () => {
-  expect(half(6)).toBe(3);
+test('hexColor', () => {
+  expect(checkHexColor('#fff')).toBe('#fff');
 });

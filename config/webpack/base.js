@@ -16,6 +16,32 @@ export default () => ({
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.s?css/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+            {
+              loader: 'sass-loader',
+            }
+         ]
+       }
     ],
   },
   // plugins: [
