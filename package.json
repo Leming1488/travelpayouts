@@ -14,9 +14,15 @@
     "start": "webpack"
   },
   "jest": {
+    "modulePaths": [
+      "./src"
+    ],
     "moduleFileExtensions": [
       "js"
     ],
+    "moduleNameMapper": {
+      ".scss$": "SassStub.js"
+    },
     "testPathIgnorePatterns": [
       "/node_modules/"
     ]
@@ -62,7 +68,6 @@
     "precss": "^1.4.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
-    "to-string-loader": "^1.1.5",
     "webpack": "v2.2.0",
     "webpack-merge": "*"
   }
