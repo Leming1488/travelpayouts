@@ -8,11 +8,11 @@ import widgetCss from './style/index.scss';
 import pikadayCss from './style/pikaday.scss';
 /*eslint-enable */
 
-export const checkHexColor = hex => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`${hex}`) && hex;
+const checkHexColor = hex => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`${hex}`) && hex;
 
 const defaultOptions = {
   locale: window.navigator.userLanguage || window.navigator.language || 'en',
-  sizeStyle: 'l',
+  size: 'l',
   buttonColor: '#F5A623',
   backgroundColor: '#4A90E2',
   placeholder1Text: 'Depart date',
@@ -22,10 +22,14 @@ const defaultOptions = {
   paragraphText: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
 };
 
-// const setWidth = container => {
-//   const width = container.offsetWidth;
-//   defaultOptions.sizeStyle = width <= 286 ?
-// }
+const setWidth = (container) => {
+  const width = container.offsetWidth;
+  let size = 'l';
+  if (width <= 1024) { size = 'm'; }
+  if (width <= 768) { size = 's'; }
+  if (width <= 440) { size = 'xs'; }
+  defaultOptions.size = size;
+};
 const merge = (object1 = {}, object2 = {}) => {
   const mergeObject = {};
   Object.keys(defaultOptions).forEach((key) => {
@@ -35,7 +39,7 @@ const merge = (object1 = {}, object2 = {}) => {
 };
 
 const render = options => `
-  <div class="travelpayoutsjs-bookpage travelpayoutsjs-bookpage--${options.sizeStyle}" style="background-color: ${options.backgroundColor} !important">
+  <div class="travelpayoutsjs-bookpage travelpayoutsjs-bookpage--${options.size}" style="background-color: ${options.backgroundColor} !important">
     <h2 class="travelpayoutsjs-title">${options.titleText}</h2>
     <div class="travelpayoutsjs-content">
       <p class="travelpayoutsjs-info">${options.paragraphText}</p>
@@ -63,12 +67,13 @@ const datepicker = node => new Pikaday({
   },
   format: 'DD/MM/YYYY',
 });
-export const appendWidget = (nodes) => {
+const appendWidget = (nodes) => {
   [...document.querySelectorAll(nodes)].forEach((node) => {
     const container = node;
+    setWidth(container);
     const userOptions = {
       locale: container.getAttribute('data-locale'),
-      sizeStyle: container.getAttribute('data-size'),
+      size: container.getAttribute('data-size'),
       buttonColor: checkHexColor(container.getAttribute('data-button-color')),
       backgroundColor: checkHexColor(container.getAttribute('data-background-color')),
       placeholder1Text: container.getAttribute('data-placeholder1-text'),
@@ -84,5 +89,7 @@ export const appendWidget = (nodes) => {
     return true;
   });
 };
+export default appendWidget;
 
-appendWidget('#point');
+appendWidget('.js-travelpayoutsjs-widget');
+

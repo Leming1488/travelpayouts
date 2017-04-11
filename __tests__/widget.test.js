@@ -1,5 +1,5 @@
 // @flow
-import { checkHexColor, appendWidget } from '../src';
+import appendWidget  from '../src';
 
 const htmlToElement = (html) => {
   const template = document.createElement('template');

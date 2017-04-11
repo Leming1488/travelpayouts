@@ -15,7 +15,7 @@ $fontPlaceholder: 14px;
 $fontButton: 20px;
 
 .travelpayoutsjs-bookpage {
-  all: inital !important;
+  all: initial !important;
 	width: 100% !important;
 	display: block !important;
 	box-sizing: border-box !important;
@@ -26,7 +26,7 @@ $fontButton: 20px;
 	color: $textColor !important;
 }
 .travelpayoutsjs-title {
-  all: inital !important;
+  all: initial !important;
 	display: block !important;
 	box-sizing: border-box !important;
 	width: 100% !important;
@@ -37,14 +37,14 @@ $fontButton: 20px;
 	color: $textColor !important;
 }
 .travelpayoutsjs-content {
-  all: inital !important;
+  all: initial !important;
 	display: table !important;
 	box-sizing: border-box !important;
 	border-collapse: separate !important;
 	text-align: center !important;
 }
 .travelpayoutsjs-info {
-  all: inital !important;
+  all: initial !important;
 	display: block !important;
 	box-sizing: border-box !important;
 	width: 100% !important;
@@ -55,23 +55,27 @@ $fontButton: 20px;
 	color: $textColor !important;
 }
 .travelpayoutsjs-form {
-  all: inital !important;
+  all: initial !important;
 	display: block !important;
 	box-sizing: border-box !important;
 	width: 100% !important;
+  text-align: center !important;
 }
 .travelpayoutsjs-form-item {
-  all: inital !important;
+  all: initial !important;
 	display: inline-block !important;
 	box-sizing: border-box !important;
 	margin-right: 17px !important;
   vertical-align: bottom !important;
+	margin-bottom: 20px !important;
 	&:last-child {
+    vertical-align: bottom !important;
 		margin: 0 !important;
+	  margin-bottom: 20px !important;
 	}
 }
 .travelpayoutsjs-input {
-  all: inital !important;
+  all: initial !important;
 	display: block !important;
 	box-sizing: border-box !important;
 	width: 100% !important;
@@ -119,6 +123,7 @@ $fontButton: 20px;
 		margin-bottom: 10px !important;
 	}
 	.travelpayoutsjs-form-item {
+    display: inline-block !important;
 		width: 220px !important;
 		&:last-child {
 			margin-left: 13px !important;
@@ -159,7 +164,7 @@ $fontButton: 20px;
 	.travelpayoutsjs-info {
 		display: table-footer-group !important;
 	}
-	.travelpayoutsjsjform-item {
+	.travelpayoutsjs-form-item {
 		display: block !important;
 		width: 100% !important;
 		margin: 0 !important;
@@ -188,7 +193,6 @@ $fontButton: 20px;
 	}
 	.travelpayoutsjs-form {
 		display: table-cell !important;
-		vertical-align: top !important;
 		width: 680px !important;
 	}
 	.travelpayoutsjs-form-item {
