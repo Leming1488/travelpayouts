@@ -14,13 +14,18 @@
     "start": "webpack"
   },
   "jest": {
+    "modulePaths": [
+      "./src"
+    ],
     "moduleFileExtensions": [
       "js"
     ],
+    "moduleNameMapper": {
+      ".scss$": "SassStub.js"
+    },
     "testPathIgnorePatterns": [
       "/node_modules/"
-    ],
-    "transform": {".*": "./node_modules/jest-css-modules"}
+    ]
   },
   "repository": {
     "type": "git",
@@ -48,7 +53,6 @@
     "eslint-config-airbnb-base": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-import": "*",
-    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "flow-bin": "^0.38",
     "flow-typed": "*",
@@ -64,8 +68,6 @@
     "precss": "^1.4.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
-    "template-string-loader": "^0.0.3",
-    "to-string-loader": "^1.1.5",
     "webpack": "v2.2.0",
     "webpack-merge": "*"
   }
