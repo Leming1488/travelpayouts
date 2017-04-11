@@ -1,13 +1,17 @@
 // @flow
+import Pikaday from 'pikaday';
+import moment from 'moment';
 
 /*eslint-disable */
 //suppress all warnings between comments
-import css from './style/index.scss';
+import widgetCss from './style/index.scss';
+import pikadayCss from './style/pikaday.scss';
 /*eslint-enable */
 
 export const checkHexColor = hex => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`${hex}`) && hex;
 
 const defaultOptions = {
+  locale: window.navigator.userLanguage || window.navigator.language || 'en',
   sizeStyle: 'l',
   buttonColor: '#F5A623',
   backgroundColor: '#4A90E2',
@@ -34,10 +38,10 @@ const render = options => `
       <p class="travelpayoutsjs-info">${options.paragraphText}</p>
       <form action="#" class="travelpayoutsjs-form">
         <label class="travelpayoutsjs-form-item">
-          <input type="text"  placeholder="${options.placeholder1Text}" class="travelpayoutsjs-input"/>
+          <input type="text"  placeholder="${options.placeholder1Text}" class="travelpayoutsjs-input js-travelpayoutsjs-datepicker"/>
         </label>
         <label class="travelpayoutsjs-form-item">
-          <input type="text" placeholder="${options.placeholder2Text}" class="travelpayoutsjs-input"/>
+          <input type="text" placeholder="${options.placeholder2Text}" class="travelpayoutsjs-input js-travelpayoutsjs-datepicker"/>
         </label>
         <div class="travelpayoutsjs-form-item">
           <input type="submit" value="${options.buttonText}" style="background-color: ${options.buttonColor} !important"
@@ -47,10 +51,20 @@ const render = options => `
     </div>
   </div>`.trim().replace(/>\W+</g, '><');
 
+const datepicker = node => new Pikaday({
+  field: node,
+  i18n: {
+    months: moment.months(),
+    weekdays: moment.weekdays(),
+    weekdaysShort: moment.weekdaysShort(),
+  },
+  format: 'DD/MM/YYYY',
+});
 export const appendWidget = (nodes) => {
   [...document.querySelectorAll(nodes)].forEach((node) => {
     const container = node;
     const userOptions = {
+      locale: container.getAttribute('data-locale') || null,
       sizeStyle: container.getAttribute('data-size') || null,
       buttonColor: checkHexColor(container.getAttribute('data-button-color')) || null,
       backgroundColor: checkHexColor(container.getAttribute('data-background-color')) || null,
@@ -62,8 +76,10 @@ export const appendWidget = (nodes) => {
     };
     const mergeOptions = merge(userOptions, defaultOptions);
     container.innerHTML = render(mergeOptions);
+    moment.locale(mergeOptions.locale);
+    [...container.querySelectorAll('.js-travelpayoutsjs-datepicker')].forEach(element => datepicker(element));
+    return true;
   });
-  return true;
 };
 
 appendWidget('#point');
