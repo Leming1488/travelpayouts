@@ -22,7 +22,10 @@ const defaultOptions = {
   paragraphText: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
 };
 
-
+// const setWidth = container => {
+//   const width = container.offsetWidth;
+//   defaultOptions.sizeStyle = width <= 286 ?
+// }
 const merge = (object1 = {}, object2 = {}) => {
   const mergeObject = {};
   Object.keys(defaultOptions).forEach((key) => {
@@ -64,15 +67,15 @@ export const appendWidget = (nodes) => {
   [...document.querySelectorAll(nodes)].forEach((node) => {
     const container = node;
     const userOptions = {
-      locale: container.getAttribute('data-locale') || null,
-      sizeStyle: container.getAttribute('data-size') || null,
-      buttonColor: checkHexColor(container.getAttribute('data-button-color')) || null,
-      backgroundColor: checkHexColor(container.getAttribute('data-background-color')) || null,
-      placeholder1Text: container.getAttribute('data-placeholder1-text') || null,
-      placeholder2Text: container.getAttribute('data-placeholder2-text') || null,
-      buttonText: container.getAttribute('data-button-text') || null,
-      titleText: container.getAttribute('data-title-text') || null,
-      paragraphText: container.getAttribute('data-paragrph-text') || null,
+      locale: container.getAttribute('data-locale'),
+      sizeStyle: container.getAttribute('data-size'),
+      buttonColor: checkHexColor(container.getAttribute('data-button-color')),
+      backgroundColor: checkHexColor(container.getAttribute('data-background-color')),
+      placeholder1Text: container.getAttribute('data-placeholder1-text'),
+      placeholder2Text: container.getAttribute('data-placeholder2-text'),
+      buttonText: container.getAttribute('data-button-text'),
+      titleText: container.getAttribute('data-title-text'),
+      paragraphText: container.getAttribute('data-paragrph-text'),
     };
     const mergeOptions = merge(userOptions, defaultOptions);
     container.innerHTML = render(mergeOptions);

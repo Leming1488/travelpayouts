@@ -8,10 +8,6 @@ const htmlToElement = (html) => {
 };
 
 
-test('checkHexColor', () => {
-  expect(checkHexColor('#fff')).toBe('#fff');
-});
-
 test('appendWidget', () => {
   const node = htmlToElement('<div data-size="m" data-title-text="dfsf" data-bg-color="" data-button-color="de1c1c" id="point"></div>');
   document.body.appendChild(node);
