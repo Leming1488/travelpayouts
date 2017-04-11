@@ -6,7 +6,7 @@ export default () => ({
   output: {
     library: 'WebpackPackage',
     path: path.join(__dirname, '../..', 'assets'),
-    filename: 'webpack-package.js',
+    filename: 'index.js',
     publicPath: '/assets/',
   },
   module: {

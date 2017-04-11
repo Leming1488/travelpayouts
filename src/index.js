@@ -1,9 +1,11 @@
 // @flow
+
+/*eslint-disable */
+//suppress all warnings between comments
 import css from './style/index.scss';
+/*eslint-enable */
 
-const container = document.querySelector('#point');
-
-const checkHexColor = hex => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`${hex}`) && hex;
+export const checkHexColor = hex => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`${hex}`) && hex;
 
 const defaultOptions = {
   sizeStyle: 'l',
@@ -16,25 +18,13 @@ const defaultOptions = {
   paragraphText: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
 };
 
-const userOptions = {
-  sizeStyle: container.getAttribute('data-size') || null,
-  buttonColor: checkHexColor(container.getAttribute('data-button-color')) || null,
-  backgroundColor: checkHexColor(container.getAttribute('data-background-color')) || null,
-  placeholder1Text: container.getAttribute('data-placeholder1-text') || null,
-  placeholder2Text: container.getAttribute('data-placeholder2-text') || null,
-  buttonText: container.getAttribute('data-button-text') || null,
-  titleText: container.getAttribute('data-title-text') || null,
-  paragraphText: container.getAttribute('data-paragrph-text') || null,
-};
 
-const mergeOptions = {};
-
-const merge = (object1, object2, mergeObject) => {
+const merge = (object1 = {}, object2 = {}) => {
+  const mergeObject = {};
   Object.keys(defaultOptions).forEach((key) => {
     mergeObject[key] = object1[key] || object2[key];
-    return true;
   });
-  return true;
+  return mergeObject;
 };
 
 const render = options => `
@@ -57,14 +47,23 @@ const render = options => `
     </div>
   </div>`.trim().replace(/>\W+</g, '><');
 
-const appendWidget = (node) => {
-  [...document.querySelectorAll(node)].forEach((el) => {
-    const element = el;
-    merge(userOptions, defaultOptions, mergeOptions);
-    element.innerHTML = render(mergeOptions);
+export const appendWidget = (nodes) => {
+  [...document.querySelectorAll(nodes)].forEach((node) => {
+    const container = node;
+    const userOptions = {
+      sizeStyle: container.getAttribute('data-size') || null,
+      buttonColor: checkHexColor(container.getAttribute('data-button-color')) || null,
+      backgroundColor: checkHexColor(container.getAttribute('data-background-color')) || null,
+      placeholder1Text: container.getAttribute('data-placeholder1-text') || null,
+      placeholder2Text: container.getAttribute('data-placeholder2-text') || null,
+      buttonText: container.getAttribute('data-button-text') || null,
+      titleText: container.getAttribute('data-title-text') || null,
+      paragraphText: container.getAttribute('data-paragrph-text') || null,
+    };
+    const mergeOptions = merge(userOptions, defaultOptions);
+    container.innerHTML = render(mergeOptions);
   });
   return true;
 };
-appendWidget('#point');
 
-export default checkHexColor;
+appendWidget('#point');

@@ -2,6 +2,7 @@
   "name": "travelpayouts",
   "version": "0.0.1",
   "description": "",
+  "main": "./assets/index.js",
   "scripts": {
     "test": "jest",
     "babel-node": "babel-node",
@@ -11,6 +12,15 @@
     "eslint": "eslint",
     "webpack": "webpack",
     "start": "webpack"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "transform": {".*": "./node_modules/jest-css-modules"}
   },
   "repository": {
     "type": "git",
