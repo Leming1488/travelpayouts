@@ -6,7 +6,7 @@ export default () => ({
   output: {
     library: 'WebpackPackage',
     path: path.join(__dirname, '../..', 'assets'),
-    filename: 'webpack-package.js',
+    filename: 'index.js',
     publicPath: '/assets/',
   },
   module: {
@@ -16,6 +16,32 @@ export default () => ({
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      {
+        test: /\.s?css/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+            {
+              loader: 'sass-loader',
+            }
+         ]
+       }
     ],
   },
   // plugins: [
