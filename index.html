@@ -1,22 +1,150 @@
 <html>
-  <head>
-    <title>Webpack Package</title>
-    <meta charset="utf-8">
-    <script async src="assets/index.js" type="text/javascript"></script>
-    <!-- <script> -->
-    <!-- (function() { -->
-	  <!-- var script = document.createElement('script'); -->
-    <!-- script.async = true; -->
-    <!-- script.src = 'https://travelpayoutsjs-leming1488.c9users.io/widget.js'
-    <!-- var entry = document.getElementsByTagName('script')[0]; -->
-    <!-- entry.parentNode.insertBefore(script, entry); -->
-    <!-- })(); -->
-</script>
-  </head>
-  <body>
-    <div  data-size="l"  data-title-text="ddsdfsf" data-background-color="#1df" data-button-color="de1c1c" class="js-travelpayoutsjs-widget"></div>
-    <div  data-size="m"  data-title-text="dfsf" data-background-color="" data-button-color="de1c1c" class="js-travelpayoutsjs-widget"></div>
-    <div  data-size="s"  data-title-text="ddsdfsf" data-background-color="#1df" data-button-color="de1c1c" class="js-travelpayoutsjs-widget"></div>
-    <div  data-size="xs"  data-title-text="ddsdfsf" data-background-color="#1df" data-button-color="de1c1c" class="js-travelpayoutsjs-widget"></div>
-  </body>
+
+<head>
+  <title>Webpack Package</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./assets/foundation.min.css">
+  <link rel="stylesheet" href="./assets/index.css">
+  <script>
+    var pres = document.querySelectorAll('pre,kbd,blockquote');
+    for (var i = 0; i < pres.length; i++) {
+    pres[i].addEventListener("dblclick", function () {
+        var selection = getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(this);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }, false);
+    }
+  </script>
+  <script>
+    (function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = './assets/index.js';
+        var entry = document.getElementsByTagName('script')[0];
+        entry.parentNode.insertBefore(script, entry);
+    })();
+  </script>
+</head>
+
+<body>
+  <div id='wrapper'>
+    <h1 class="widget-title">Быстрый старт Виджета</h2>
+            <hr />
+            <h4 class="widget-sub-title">Шаг 1. Подключите Виджет</h5>
+                <p class="widget-text-content">
+                    Для этого добавьте в заголовок HEAD HTML-страницы строку javascript кода.
+                    Это загрузит в браузер JavaScript-файл.
+                </p>
+                <pre class='code code-javascript'><label>JS</label><code>
+                &lt;head&gt;
+                ...
+                &lt;script&gt;(function() { var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://travelpayoutsjs-leming1488.c9users.io/widget.js';
+                var entry = document.getElementsByTagName('script')[0];
+                entry.parentNode.insertBefore(script, entry);})();&lt;/script&gt;
+                ...
+                &lt;/head&gt;
+                </code></pre>
+                <h4 class="widget-sub-title">Шаг 2.  Создайте контейнер</h4>
+                <p class="widget-text-content">
+                    Создайте HTML-элемент блочного типа ( например DIV ) c классoм <code>"js-travelpayoutsjs-widget"</code> ненулевого размера, в котором будет размещен виджет.
+                </p>
+                <pre class='code code-html'><label>HTML</label><code>&lt;div class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;</code></pre>
+                <h4 class="widget-sub-title">Шаг 3. Кастомизация Виджета</h4>
+                <p class="widget-text-content">
+                   Для изменения опций по умолчанию добавьте дополнительные атрибуты в созданый контейнер.
+                </p>
+                <pre class='code code-html'><label>HTML</label><code>&lt;div data-size="l" data-title-text="hello" data-background-color="#4A90E2" data-button-color="#F5A623"  class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;</code></pre>
+                <table class="widget-attr-table">
+                    <thead>
+                        <tr>
+                            <th>Атрибут</th>
+                            <th>Пример</th>
+                            <th>Описание</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Locale</td>
+                            <td>data-locale="ru"</td>
+                            <td>Набор параметров, специфичных для языка и/или страны.<br/>Например "ru" русский.<br/> (По умолчанию локаль для браузера).</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>data-size="l"</td>
+                            <td>Размерная сетка ширины виджета: "xs", "s", "m", "l".<br/>(По умолчанию автоматически задется от родительского контейнера.</td>
+                        </tr>
+                        <tr>
+                            <td>Button color</td>
+                            <td>data-button-color="#F5A623"</td>
+                            <td>Цвет кнопки отправки. Формат цвета Hex Color.</td>
+                        </tr>
+                        <tr>
+                            <td>Background color</td>
+                            <td>data-background-color="#4A90E2"</td>
+                            <td>Цвет фона виджета. Формат цвета Hex Color.</td>
+                        </tr>
+                        <tr>
+                            <td>Button text</td>
+                            <td>data-button-text="submit"</td>
+                            <td>Текст кнопки.</td>
+                        </tr>
+                        <tr>
+                            <td>Title text</td>
+                            <td>data-title-text="Where does it come from? Why do we use it?"</td>
+                            <td>Текст заголовка.</td>
+                        </tr>
+                        <tr>
+                            <td>Content text</td>
+                            <td>data-paragrph-text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"</td>
+                            <td>Текст основного блока.</td>
+                        </tr>
+                        <tr>
+                            <td>Placeholder text</td>
+                            <td>data-placeholder1-text="Depart date" <br/> data-placeholder2-text="Return date"</td>
+                            <td>Тект полей формы.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4 class="text-center widget-sub-title">Результат</h4>
+                <p class="text-center">
+                    Полный текст примера:
+                </p>
+                <pre class='code code-html'><label>HTML</label><code>
+                &lt;!DOCTYPE html&gt;
+                &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+                &lt;head&gt;
+
+                &lt;title&gt;Быстрый старт. Размещение виджета на странице&lt;/title&gt;
+                &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+
+                &lt;script&gt;(function() { var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://travelpayoutsjs-leming1488.c9users.io/widget.js';
+                var entry = document.getElementsByTagName('script')[0];
+                entry.parentNode.insertBefore(script, entry);})();&lt;/script&gt;
+
+                &lt;/head&gt;
+
+                &lt;body&gt;
+
+                &lt;div data-size="l" data-title-text="hello" data-background-color="#4A90E2" data-button-color="#F5A623"  class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;
+
+                &lt;/body&gt;
+                &lt;/html&gt;
+                </code></pre>
+                <hr />	
+                <h4 class="text-center widget-sub-title">Примеры кастомизации Виджета</h4>
+                <pre class='code code-html'><label>HTML</label><code>&lt;div data-size="l" data-paragrph-text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"	 data-background-color="#4A90E2" data-button-color="#F5A623"  class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;</code></pre>
+                <div  data-size="l" data-paragrh-text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"  data-background-color="#307682"  data-button-color="#af2869" class="js-travelpayoutsjs-widget"></div>
+                <pre class='code code-html'><label>HTML</label><code>&lt;div data-size="m"  data-button-text="Bang-bang"  data-title-text="Hello" data-locale="en"  class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;</code></pre>
+                <div  data-size="m" data-button-text="Bang-bang"  data-title-text="Hello" data-locale="en" class="js-travelpayoutsjs-widget"></div>
+                <pre class='code code-html'><label>HTML</label><code>&lt;div data-size="s" data-background-color="#534982" data-button-color="#a6a5a2"  class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;</code></pre>
+                <div  data-size="s" data-background-color="#534982" data-button-color="#a6a5a2" class="js-travelpayoutsjs-widget"></div>
+                <pre class='code code-html'><label>HTML</label><code>&lt;div data-size="xs" data-background-color="#90d2dd" data-button-color="#c691d1"  class="js-travelpayoutsjs-widget&gt;&lt;/div&gt;</code></pre>
+                <div  data-size="xs"  data-placeholder2-text="End"  data-placeholder1-text="Start" data-background-color="#90d2dd" data-button-color="#c691d1" class="js-travelpayoutsjs-widget"></div>
+    </body>
 </html>

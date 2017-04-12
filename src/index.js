@@ -22,6 +22,37 @@ const defaultOptions = {
   paragraphText: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
 };
 
+const placeholderWrap = () => {
+  const unfocusOnAnElement = (event) => {
+    const target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+    if (target.value === '') {
+      target.value = target.getAttribute('placeholder');
+    }
+  };
+  const hidePlaceholderOnFocus = (event) => {
+    const target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+    if (target.value === target.getAttribute('placeholder')) {
+      target.value = '';
+    }
+  };
+  if (!('placeholder' in document.createElement('input'))) {
+    const inputs = document.getElementsByTagName('input');
+    [...inputs].forEach((el) => {
+      const input = el;
+      if (!input.value) {
+        input.value = input.getAttribute('placeholder');
+      }
+      if (input.addEventListener) {
+        input.addEventListener('click', hidePlaceholderOnFocus, false);
+        input.addEventListener('blur', unfocusOnAnElement, false);
+      } else if (input.attachEvent) {
+        input.attachEvent('onclick', hidePlaceholderOnFocus);
+        input.attachEvent('onblur', unfocusOnAnElement);
+      }
+    });
+  }
+};
+
 const setWidth = (container) => {
   const width = container.offsetWidth;
   let size = 'l';
@@ -45,18 +76,18 @@ const render = options => `
       <p class="travelpayoutsjs-info">${options.paragraphText}</p>
       <form action="#" class="travelpayoutsjs-form">
         <label class="travelpayoutsjs-form-item">
-          <input type="text"  placeholder="${options.placeholder1Text}" class="travelpayoutsjs-input js-travelpayoutsjs-datepicker"/>
+          <input type="text" readonly required placeholder="${options.placeholder1Text}" class="travelpayoutsjs-input js-travelpayoutsjs-datepicker"/>
         </label>
         <label class="travelpayoutsjs-form-item">
-          <input type="text" placeholder="${options.placeholder2Text}" class="travelpayoutsjs-input js-travelpayoutsjs-datepicker"/>
+          <input type="text" readonly required placeholder="${options.placeholder2Text}" class="travelpayoutsjs-input js-travelpayoutsjs-datepicker"/>
         </label>
         <div class="travelpayoutsjs-form-item">
-          <input type="submit" value="${options.buttonText}" style="background-color: ${options.buttonColor} !important"
+          <input type="submit"  value="${options.buttonText}" style="background-color: ${options.buttonColor} !important"
           class="travelpayoutsjs-input travelpayoutsjs-input--button"/>
         </div>
       </form>
     </div>
-  </div>`.trim().replace(/>\W+</g, '><');
+  </div>`.trim().replace(/>\s+</g, '><');
 
 const datepicker = node => new Pikaday({
   field: node,
@@ -65,7 +96,7 @@ const datepicker = node => new Pikaday({
     weekdays: moment.weekdays(),
     weekdaysShort: moment.weekdaysShort(),
   },
-  format: 'DD/MM/YYYY',
+  format: 'DD.MM.YYYY',
 });
 const appendWidget = (nodes) => {
   [...document.querySelectorAll(nodes)].forEach((node) => {
@@ -86,10 +117,35 @@ const appendWidget = (nodes) => {
     container.innerHTML = render(mergeOptions);
     moment.locale(mergeOptions.locale);
     [...container.querySelectorAll('.js-travelpayoutsjs-datepicker')].forEach(element => datepicker(element));
+    placeholderWrap();
     return true;
   });
 };
+const onDOMReady = (fn) => {
+  let isReady = false;
+  if (window.addEventListener) {
+    window.addEventListener('DOMContentLoaded', fn, false);
+    return true;
+  }
+  window.attachEvent('onload', () => {
+    isReady = true;
+    fn();
+  });
+  const timer = setInterval(() => {
+    if (isReady) {
+      clearInterval(timer);
+      return true;
+    }
+    if (document && document.getElementsByTagName && document.querySelectorAll && document.body) {
+      clearInterval(timer);
+      fn();
+      return true;
+    }
+    return true;
+  }, 20);
+  return true;
+};
 export default appendWidget;
 
-appendWidget('.js-travelpayoutsjs-widget');
+onDOMReady(appendWidget('.js-travelpayoutsjs-widget'));
 
