@@ -4,8 +4,9 @@
 ## Getting Started
 
 ```
+$ git clone https://github.com/Leming1488/travelpayouts.git
+$ cd travelpayouts
 $ make open
-
 ```
-## Demo
+## Demo and Usage
 https://travelpayoutsjs-leming1488.c9users.io/
