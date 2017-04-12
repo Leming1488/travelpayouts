@@ -3,6 +3,9 @@ install: install-deps install-flow-typed
 start:
 	npm start
 
+open:
+	xdg-open index.html
+
 develop:
 	npm run webpack -- --watch --env development
 
