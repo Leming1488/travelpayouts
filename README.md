@@ -9,4 +9,4 @@ $ cd travelpayouts
 $ make open
 ```
 ## Demo and Usage
-https://travelpayoutsjs-leming1488.c9users.io/
+https://travelpayoutsjs.herokuapp.com/
