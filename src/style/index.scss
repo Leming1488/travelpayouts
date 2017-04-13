@@ -85,7 +85,7 @@ $fontButton: 20px;
 	border-width: 0 !important;
 	padding: 10px !important;
   background-color: $inputColor !important;
-	background-image: url('data:image/svg+xml;utf8,<svg width="15" height="17" viewBox="0 0 15 17" xmlns="http://www.w3.org/2000/svg"><path d="M2 7.998s.002 7.25 0 7.002h11.003c-.002 0-.006-7-.006-7L2 7.997zM8 11h4v3H8v-3zm7-5v9c0 1.105-.895 2-2 2H2c-1.105 0-2-.895-2-2V6h15zm-3-4V1c0-.552-.448-1-1-1h-1c-.552 0-1 .448-1 1v1H6V1c0-.552-.448-1-1-1H4c-.552 0-1 .448-1 1v1H2C.895 2 0 2.894 0 4h15c0-1.105-.895-2-2-2h-1z" fill="#4990E2" fill-rule="evenodd"/></svg>') !important;
+	background-image: url('data:image/svg+xml;utf8,<svg width="15" height="17" viewBox="0 0 15 17" xmlns="http://www.w3.org/2000/svg"><path d="M2 7.998s.002 7.25 0 7.002h11.003c-.002 0-.006-7-.006-7L2 7.997zM8 11h4v3H8v-3zm7-5v9c0 1.105-.895 2-2 2H2c-1.105 0-2-.895-2-2V6h15zm-3-4V1c0-.552-.448-1-1-1h-1c-.552 0-1 .448-1 1v1H6V1c0-.552-.448-1-1-1H4c-.552 0-1 .448-1 1v1H2C.895 2 0 2.894 0 4h15c0-1.105-.895-2-2-2h-1z" fill="DodgerBlue" fill-rule="evenodd"/></svg>') !important;
 	background-repeat: no-repeat !important;
 	background-position: 95% center !important;
 	font-size: $fontPlaceholder !important;
@@ -127,11 +127,19 @@ border-radius: 2px !important;
 	.travelpayoutsjs-info {
 		margin-bottom: 10px !important;
 	}
+	.travelpayoutsjs-form {
+		display: table-cell !important;
+    text-align: center !important;
+	}
 	.travelpayoutsjs-form-item {
-    display: inline-block !important;
-		width: 220px !important;
+    display: table-cell !important;
+		width: 240px !important;
+    border-right: 20px solid transparent !important;
+		&:nth-child(2) {
+    border-right: 30px solid transparent !important;
+    }
 		&:last-child {
-			margin-left: 13px !important;
+      border-right: none !important;
 			width: 240px !important;
 		}
 	}
@@ -201,13 +209,16 @@ border-radius: 2px !important;
 	}
 	.travelpayoutsjs-form {
 		display: table-cell !important;
+    text-align: center !important;
 		width: 680px !important;
 	}
 	.travelpayoutsjs-form-item {
-		width: 200px !important;
+    display: table-cell !important;
+		width: 220px !important;
+    border-right: 20px solid transparent !important;
 		&:last-child {
-			width: 240px !important;
-			margin-right: 0 !important;
+      border-right: none !important;
+			width: 220px !important;
 		}
 	}
 }
